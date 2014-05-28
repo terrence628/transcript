@@ -1,6 +1,7 @@
 package ca.bcit.comp2613.transcript.model;
 
 public class course {
+	Long id;
 	String courseName;
 	String courseNumber;
 	double credit;

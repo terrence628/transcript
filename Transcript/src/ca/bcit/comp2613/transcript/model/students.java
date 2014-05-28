@@ -1,5 +1,6 @@
 package ca.bcit.comp2613.transcript.model;
 public class students {
+	Long id;
 	String studentNumber;
 	String firstName;
 	String lastName;
@@ -9,6 +10,9 @@ public class students {
 		this.studentNumber = studentNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
+	}
+	public students() {
+		// TODO Auto-generated constructor stub
 	}
 	public String getStudentNumber() {
 		return studentNumber;
