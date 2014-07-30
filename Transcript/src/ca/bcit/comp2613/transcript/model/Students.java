@@ -1,17 +1,25 @@
 package ca.bcit.comp2613.transcript.model;
-public class students {
+
+import java.util.List;
+
+import ca.bcit.comp2613.transcript.model.Course;
+
+
+
+public class Students {
 	Long id;
 	String studentNumber;
 	String firstName;
 	String lastName;
+	private List<Course> courses;
 	
-	public students(String studentNumber, String firstName, String lastName) {
+	public Students(String studentNumber, String firstName, String lastName) {
 		super();
 		this.studentNumber = studentNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	public students() {
+	public Students() {
 		// TODO Auto-generated constructor stub
 	}
 	public String getStudentNumber() {
@@ -32,15 +40,17 @@ public class students {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
 	@Override
 	public String toString() {
-		return "students [studentNumber=" + studentNumber + ", firstName="
-				+ firstName + ", lastName=" + lastName
-				+ ", getStudentNumber()=" + getStudentNumber()
-				+ ", getFirstName()=" + getFirstName() + ", getLastName()="
-				+ getLastName() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "Students [studentNumber=" + studentNumber
+				+ ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 }

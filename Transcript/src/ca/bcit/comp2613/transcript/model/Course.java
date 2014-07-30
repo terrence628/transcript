@@ -1,15 +1,27 @@
 package ca.bcit.comp2613.transcript.model;
 
-public class course {
+import java.util.List;
+
+import ca.bcit.comp2613.transcript.model.Students;
+
+public class Course {
 	Long id;
 	String courseName;
 	String courseNumber;
 	double credit;
 	double gpa;
+	private List<Students> students;
 
-	public course(String courseName, String courseNumber, double credit,
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Course(Long id,String courseName, String courseNumber, double credit,
 			double gpa) {
 		super();
+		this.id = id;
 		this.courseName = courseName;
 		this.courseNumber = courseNumber;
 		this.credit = credit;
@@ -39,15 +51,21 @@ public class course {
 	public void setGpa(double gpa) {
 		this.gpa = gpa;
 	}
+	
+	public List<Students> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Students> students) {
+		this.students = students;
+	}
 	@Override
 	public String toString() {
-		return "course [courseName=" + courseName + ", courseNumber="
-				+ courseNumber + ", credit=" + credit + ", gpa=" + gpa
-				+ ", getCourseName()=" + getCourseName()
-				+ ", getCourseNumber()=" + getCourseNumber() + ", getCredit()="
-				+ getCredit() + ", getGpa()=" + getGpa() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "Course [id=" + id + ", courseName=" + courseName
+				+ ", courseNumber=" + courseNumber + ", credit=" + credit
+				+ ", gpa=" + gpa + ", students=" + students + "]";
 	}
+	
+	
+
 
 }
