@@ -13,7 +13,7 @@ public class StudentUtil {
 
 	public static ArrayList<Students> createStudents() {
 		ArrayList<Students> students = new ArrayList<>();
-		Students student = new Students("1", "Henry", "Chan");
+		Students student = new Students("A1", "Henry", "Chan");
 		students.add(student);
 		// create loop
 		for (int i = 2; i < 101; i++) {

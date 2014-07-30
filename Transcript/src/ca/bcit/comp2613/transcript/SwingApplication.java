@@ -216,7 +216,7 @@ public class SwingApplication {
 		frame.getContentPane().add(btnNewButton);
 
 		idTextField = new JTextField();
-		idTextField.setEditable(false);
+		
 		idTextField.setBounds(159, 285, 325, 20);
 		frame.getContentPane().add(idTextField);
 		idTextField.setColumns(10);

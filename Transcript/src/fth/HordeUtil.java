@@ -70,7 +70,7 @@ public class HordeUtil {
 
 	private static ObjectMapper createJacksonXmlMapper() {
 		JacksonXmlModule module = new JacksonXmlModule();
-		module.setDefaultUseWrapper(false);
+		//module.setDefaultUseWrapper(false);
 		ObjectMapper xmlMapper = new XmlMapper(module);
 		return xmlMapper;
 		// TODO
