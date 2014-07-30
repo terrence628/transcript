@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class HordeUtil {
@@ -54,11 +55,11 @@ public class HordeUtil {
 		FileUtils.writeStringToFile(file, characterArrayListAsString);
 	}
 	
-	private static File getFile(String name) {
+	public static File getFile(String name) {
 		// TODO note, there is something not quite right about fileStr ... fix the bug please
 		// in its current form the parent directory will likely be Invalid
 		String fileStr = System.getProperty("user.dir") + File.separator + "src" + File.separator + 
-				HordeUtilTestDriver.class.getPackage().getName().replace(".", "|") + File.separator + name;
+				HordeUtilTestDriver.class.getPackage().getName().replace(".", "/") + File.separator + name;
 		return new File(fileStr);
 	}
 	
@@ -68,7 +69,10 @@ public class HordeUtil {
 	}
 
 	private static ObjectMapper createJacksonXmlMapper() {
-		return new ObjectMapper();
+		JacksonXmlModule module = new JacksonXmlModule();
+		module.setDefaultUseWrapper(false);
+		ObjectMapper xmlMapper = new XmlMapper(module);
+		return xmlMapper;
 		// TODO
 		// return new ObjectMapper() will return a JSON Object Mapper
 		// How do we return an XML Object Mapper?
@@ -83,5 +87,6 @@ public class HordeUtil {
 			throw new InvalidDirectoryException(file.getParent());
 		}
 		//FileUtils.write...
+		FileUtils.writeStringToFile(file, xmlStr);
 	}
 }

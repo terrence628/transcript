@@ -3,7 +3,11 @@ package fth;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.persistence.EntityManagerFactory;
 import javax.swing.JButton;
@@ -15,6 +19,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
 
 public class ForTheHordeSwingApplication {
 	public static Logger log = Logger.getLogger(HordeUtilTestDriver.class);
@@ -74,8 +79,18 @@ public class ForTheHordeSwingApplication {
 					// persist that arraylist to the in memory DB (H2)
 					//
 					// hints:
-					//ArrayList<Character> characters =  ???.getCharactersArrayListFromXML(textArea.getText());
+					//ArrayList<Character> characters =  HordeUtil.getCharactersArrayListFromXML.getCharactersArrayListFromXML(textArea.getText());
 					// aCertainRepository.aMethodSimilarToPersist(characters);
+					File file = HordeUtil.getFile("characters.xml"); 
+					Scanner s = new Scanner(file);
+					while(s.hasNext())  
+					  {  
+						  textArea.append(s.nextLine()); 	 
+					  }  
+					ArrayList<Character> characters =  HordeUtil.getCharactersArrayListFromXML(textArea.getText());
+					
+					characterRepository.save(characters);
+				
 				} catch (Exception e) {
 					log.error("", e);
 				}
