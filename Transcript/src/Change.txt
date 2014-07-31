@@ -1,0 +1,5 @@
+7-30
+
+The "New" button will generate the next id according to the list.
+Added a button to calculate Average GPA in "View Course"
+Added a button to calculate Total Credit in "View Course"
