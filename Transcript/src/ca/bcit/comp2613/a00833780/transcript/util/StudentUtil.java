@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.a00833780.util;
+package ca.bcit.comp2613.a00833780.transcript.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.UUID;
 
 
-import ca.bcit.comp2613.transcript.model.Course;
-import ca.bcit.comp2613.transcript.model.Students;
+
+
+
+import ca.bcit.comp2613.a00833780.transcript.model.Course;
+import ca.bcit.comp2613.a00833780.transcript.model.Students;
 
 public class StudentUtil {
 

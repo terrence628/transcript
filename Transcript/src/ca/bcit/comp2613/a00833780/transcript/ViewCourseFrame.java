@@ -1,10 +1,7 @@
-package ca.bcit.comp2613.transcript;
+package ca.bcit.comp2613.a00833780.transcript;
 
-
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.util.UUID;
 
 import javax.swing.JButton;
@@ -16,15 +13,15 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.JSeparator;
 
-import ca.bcit.comp2613.transcript.model.Students;
-import ca.bcit.comp2613.transcript.model.Course;
-import ca.bcit.comp2613.a00833780.util.CourseUtil;
-import ca.bcit.comp2613.a00833780.util.StudentUtil;
-import ca.bcit.comp2613.transcript.SwingApplication;
+import ca.bcit.comp2613.a00833780.transcript.SwingApplication;
+import ca.bcit.comp2613.a00833780.transcript.model.Course;
+import ca.bcit.comp2613.a00833780.transcript.model.Students;
+import ca.bcit.comp2613.a00833780.transcript.util.CourseUtil;
+import ca.bcit.comp2613.a00833780.transcript.util.StudentUtil;
 
-public class CourseFrame extends JFrame {
-
+public class ViewCourseFrame extends JFrame {
 
 	private JTable table;
 	private JTextField idTextField;
@@ -41,10 +38,15 @@ public class CourseFrame extends JFrame {
 	public String[] columnNames = new String[] { "id", "Course Name",
 			"Course Number", "Credit", "GPA" };
 
+	private Students student;
 	private JButton btnClose;
+	private JTextField addTextField;
+	private JLabel lblCourseId;
 
-
-	public CourseFrame() {
+	public ViewCourseFrame(Students student) {
+		this.student = student;
+		this.setTitle(student.getFirstName() + " " + student.getLastName()
+				+ "' s Class");
 		initialize();
 		initTable();
 	}
@@ -79,65 +81,52 @@ public class CourseFrame extends JFrame {
 					.getValueAt(table.getSelectedRow(), 3).toString());
 			gpaTextField.setText(table.getModel()
 					.getValueAt(table.getSelectedRow(), 4).toString());
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 
-	public void doSave() {
+	public void removeFromCourse() {
 		String id = idTextField.getText();
-		String courseName = courseNameTextField.getText();
-		String courseNumber = courseNumberTextField.getText();
-		String credit = creditTextField.getText();
-		String gpa = gpaTextField.getText();
-		Course course = new Course(Long.parseLong(id),courseName, courseNumber, Double.parseDouble(credit),Double.parseDouble(gpa));
-		CourseUtil.save(SwingApplication.courses, course);
-		//table.clearSelection();
+		Course course = new Course(Long.parseLong(id), null, null, 0, 0);
+		StudentUtil.removeFromCourse(student, course);
 		refreshTable();
 	}
-	
-	public void doDelete() {
-		String id = idTextField.getText();
-		Course course= new Course(Long.parseLong(id), null, null, 0, 0);
-		CourseUtil.delete(SwingApplication.courses, course);
-		refreshTable();
-	}
-	
-	public void doNew() {
-		Long id = null;
-		for (Course course : SwingApplication.courses) {
-		id = course.getId();
+
+	public void doAdd() {
+		try {
+			String id = addTextField.getText();
+			Course course = new Course(Long.parseLong(id), null, null, 0, 0);
+			StudentUtil.addToCourse(student, course, SwingApplication.courses);
+		} catch (Exception e) {
 		}
-	
-		String newId = ""+ (id + 1);
-		idTextField.setText(newId);
-		courseNameTextField.setText("");
-		courseNumberTextField.setText("");
-		creditTextField.setText("");
+		refreshTable();
 	}
 
 	private void refreshTable() {
 		// swingStudentModel = new SwingStudentModel();
 		Object[][] data = null;
-
-		data = new Object[SwingApplication.courses.size()][5];
-		int i = 0;
-		for (Course course : SwingApplication.courses) {
-			data[i][0] = course.getId();
-			data[i][1] = course.getCourseName();
-			data[i][2] = course.getCourseNumber();
-			data[i][3] = course.getCredit();
-			data[i][4] = course.getGpa();
-			i++;
+		if (student.getCourses() != null) {
+			data = new Object[student.getCourses().size()][5];
+			int i = 0;
+			for (Course course : student.getCourses()) {
+				data[i][0] = course.getId();
+				data[i][1] = course.getCourseName();
+				data[i][2] = course.getCourseNumber();
+				data[i][3] = course.getCredit();
+				data[i][4] = course.getGpa();
+				i++;
+			}
+			swingStudentModel.setDataVector(data, columnNames);
+			table.repaint();
 		}
-		swingStudentModel.setDataVector(data, columnNames);
-		table.repaint();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		this.setBounds(100, 100, 601, 499);
+
+		this.setBounds(100, 100, 601, 704);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 
@@ -154,6 +143,8 @@ public class CourseFrame extends JFrame {
 		this.getContentPane().add(scrollPane);
 		// scrollPane.add(table);
 		// frame.getContentPane().add(table);
+
+
 
 		lblId = new JLabel("ID");
 		lblId.setBounds(44, 288, 46, 14);
@@ -204,42 +195,45 @@ public class CourseFrame extends JFrame {
 		gpaTextField.setColumns(10);
 
 
-		JButton btnSave = new JButton("Save");
-		btnSave.addActionListener(new ActionListener() {
+		JButton btnRemove = new JButton("Remove From Transcript");
+		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				doSave();
+				removeFromCourse();
 			}
 		});
-		btnSave.setBounds(44, 412, 89, 23);
-		this.getContentPane().add(btnSave);
+		btnRemove.setBounds(32, 413, 252, 23);
+		this.getContentPane().add(btnRemove);
 
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				doDelete();
+				doAdd();
 			}
 		});
-		btnDelete.setBounds(169, 412, 89, 23);
-		this.getContentPane().add(btnDelete);
-
-		JButton btnNewButton = new JButton("New");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				doNew();
-			}
-		});
-		btnNewButton.setBounds(496, 260, 89, 23);
-		this.getContentPane().add(btnNewButton);
+		btnAdd.setBounds(252, 594, 89, 23);
+		this.getContentPane().add(btnAdd);
 
 
-		
 		btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CourseFrame.this.dispose();
+				ViewCourseFrame.this.dispose();
 			}
 		});
-		btnClose.setBounds(496, 438, 89, 23);
+		btnClose.setBounds(496, 643, 89, 23);
 		getContentPane().add(btnClose);
+
+		addTextField = new JTextField();
+		addTextField.setBounds(301, 556, 86, 20);
+		getContentPane().add(addTextField);
+		addTextField.setColumns(10);
+
+		lblCourseId = new JLabel("Course ID to Add");
+		lblCourseId.setBounds(159, 562, 125, 14);
+		getContentPane().add(lblCourseId);
+
+		JSeparator separator = new JSeparator();
+		separator.setBounds(182, 413, 1, 2);
+		getContentPane().add(separator);
 	}
 }

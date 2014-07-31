@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.transcript;
+package ca.bcit.comp2613.a00833780.transcript;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -6,9 +6,9 @@ import java.util.Arrays;
 
 import javax.swing.JFrame;
 
-import ca.bcit.comp2613.transcript.model.Students;
-import ca.bcit.comp2613.a00833780.util.StudentUtil;
-import ca.bcit.comp2613.transcript.SwingApplication;
+import ca.bcit.comp2613.a00833780.transcript.SwingApplication;
+import ca.bcit.comp2613.a00833780.transcript.model.Students;
+import ca.bcit.comp2613.a00833780.transcript.util.StudentUtil;
 
 
 public class TestDriver {

@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.transcript;
+package ca.bcit.comp2613.a00833780.transcript;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -16,13 +16,12 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import ca.bcit.comp2613.transcript.model.Students;
-import ca.bcit.comp2613.transcript.model.Course;
-import ca.bcit.comp2613.a00833780.util.CourseUtil;
-import ca.bcit.comp2613.a00833780.util.StudentUtil;
-
-import ca.bcit.comp2613.transcript.CourseFrame;
-import ca.bcit.comp2613.transcript.SwingStudentModel;
+import ca.bcit.comp2613.a00833780.transcript.SwingStudentModel;
+import ca.bcit.comp2613.a00833780.transcript.model.Course;
+import ca.bcit.comp2613.a00833780.transcript.model.Students;
+import ca.bcit.comp2613.a00833780.transcript.util.CourseUtil;
+import ca.bcit.comp2613.a00833780.transcript.util.StudentUtil;
+import ca.bcit.comp2613.a00833780.transcript.CourseFrame;
 
 public class SwingApplication {
 

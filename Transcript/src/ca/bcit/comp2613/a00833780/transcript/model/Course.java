@@ -1,8 +1,8 @@
-package ca.bcit.comp2613.transcript.model;
+package ca.bcit.comp2613.a00833780.transcript.model;
 
 import java.util.List;
 
-import ca.bcit.comp2613.transcript.model.Students;
+import ca.bcit.comp2613.a00833780.transcript.model.Students;
 
 public class Course {
 	Long id;

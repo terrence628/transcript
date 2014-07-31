@@ -1,4 +1,4 @@
-package ca.bcit.comp2613.transcript;
+package ca.bcit.comp2613.a00833780.transcript;
 
 import javax.swing.table.DefaultTableModel;
 
