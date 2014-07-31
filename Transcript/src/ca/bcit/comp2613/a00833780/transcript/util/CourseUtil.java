@@ -16,7 +16,7 @@ public class CourseUtil {
 		for (int i = 0; i < 1000; i++) {
 			String courseName = UUID.randomUUID().toString();
 			Course course = new Course((long) i, courseName, "COMP" + i,
-					(int) ((Math.random() * 10)+1), Math.random() * 100);
+					(int) ((Math.random() * 10)+1),(int)( Math.random() * 100));
 			courses.add(course);
 		}
 		return courses;

@@ -2,9 +2,11 @@ package ca.bcit.comp2613.a00833780.transcript;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.UUID;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -29,17 +31,23 @@ public class ViewCourseFrame extends JFrame {
 	private JTextField courseNameTextField;
 	private JTextField creditTextField;
 	private JTextField gpaTextField;
+	private JTextField totalCreditTextField;
+	private JTextField averageGpaTextField;
+	
 	private JLabel lblCredit;
 	private JLabel lblCourseName;
 	private JLabel lblCourseNumber;
 	private JLabel lblId;
 	private JLabel lblGpa;
+
 	private NonEditableDefaultTableModel swingStudentModel;
 	public String[] columnNames = new String[] { "id", "Course Name",
 			"Course Number", "Credit", "GPA" };
 
 	private Students student;
 	private JButton btnClose;
+	private JButton btnTotalCredit;
+	private JButton btnAverageGpa;
 	private JTextField addTextField;
 	private JLabel lblCourseId;
 
@@ -166,8 +174,6 @@ public class ViewCourseFrame extends JFrame {
 		lblGpa.setBounds(44, 354, 77, 14);
 		this.getContentPane().add(lblGpa);
 
-
-
 		idTextField = new JTextField();
 		idTextField.setEditable(false);
 		idTextField.setBounds(159, 285, 325, 20);
@@ -232,6 +238,46 @@ public class ViewCourseFrame extends JFrame {
 		lblCourseId.setBounds(159, 562, 125, 14);
 		getContentPane().add(lblCourseId);
 
+		btnTotalCredit = new JButton("Total Credit");
+		btnTotalCredit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int totalcredit= 0;
+				for (Course course : student.getCourses()) {
+					totalcredit = totalcredit + (int)course.getCredit();
+				}
+				totalCreditTextField.setText("" + totalcredit);
+			}
+		});
+		btnTotalCredit.setBounds(32, 453,120, 20);
+		getContentPane().add(btnTotalCredit);
+		
+		totalCreditTextField = new JTextField();
+		totalCreditTextField.setEditable(false);
+		totalCreditTextField.setBounds(160, 453, 86, 20);
+		getContentPane().add(totalCreditTextField);
+		totalCreditTextField.setColumns(10);
+		
+		btnAverageGpa = new JButton("Average GPA");
+		btnAverageGpa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double totalgpa= 0;
+				int counter = 0;
+				for (Course course : student.getCourses()) {
+					totalgpa = totalgpa + (double)course.getGpa();
+					counter++;
+					}
+				averageGpaTextField.setText("" + (int)totalgpa/counter);
+			}
+		});
+		btnAverageGpa.setBounds(32, 483,120, 20);
+		getContentPane().add(btnAverageGpa);
+		
+		averageGpaTextField = new JTextField();
+		averageGpaTextField.setEditable(false);
+		averageGpaTextField.setBounds(160, 483, 86, 20);
+		getContentPane().add(averageGpaTextField);
+		averageGpaTextField.setColumns(10);
+		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(182, 413, 1, 2);
 		getContentPane().add(separator);
