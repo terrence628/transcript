@@ -10,8 +10,8 @@ FTH - For The Horde
 6) Run HordeUtilTestDriver again and a file called characters.xml will be generated.
 	* I'll leave it to you to figure out where this file will be generated, however the output of this will
 	be needed later on
-	
-	
+
+
 7) Start up ForTheHordeSwingApplication.  Take a look "Insert XML" button callback
 	* modify the Insert XML button callback so that whatever is pasted (copy and paste the contents
 	of characters.xml here) in the textarea will be saved to the DB
@@ -25,4 +25,9 @@ FTH - For The Horde
 	* you will have to add some code for this to save properly
 10) push your changes on your repo to GitHub
 
+11a) If you have NOT created your zip file for your final project do so
+11b) Optional if you have done 11a / Required if not: 
+		* Modify the <version>0.0.1-SNAPSHOT</version> in pom.xml to <version>final</version>
+		* recreate the .zip artifact and push it up to GitHub Pages
+ 
 Good luck!
