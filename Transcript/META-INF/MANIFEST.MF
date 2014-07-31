@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Transcript
-Bundle-SymbolicName: Transcript
-Bundle-Version: 1.0.0.qualifier
-Export-Package: ca.bcit.comp2613.a00833780.util,
- ca.bcit.comp2613.transcript,
- ca.bcit.comp2613.transcript.model,
- fth

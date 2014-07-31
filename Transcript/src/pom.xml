@@ -85,7 +85,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>ca.bcit.comp2613.coursematerial.day09.TeacherSwingApplication</mainClass>
+							<mainClass>ca.bcit.comp2613.a00833780.transcript.TestDriver</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
