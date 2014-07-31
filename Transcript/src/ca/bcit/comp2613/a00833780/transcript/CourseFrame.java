@@ -37,7 +37,7 @@ public class CourseFrame extends JFrame {
 	private JLabel lblId;
 	private JLabel lblGpa;
 	private NonEditableDefaultTableModel swingStudentModel;
-	public String[] columnNames = new String[] { "id", "Course Name",
+	public String[] columnNames = new String[] { "Course Id", "Course Name",
 			"Course Number", "Credit", "GPA" };
 
 	private JButton btnClose;
@@ -103,7 +103,7 @@ public class CourseFrame extends JFrame {
 	public void doNew() {
 		Long id = null;
 		for (Course course : SwingApplication.courses) {
-		id = course.getId();
+		id = course.getCourseId();
 		}
 	
 		String newId = ""+ (id + 1);
@@ -120,7 +120,7 @@ public class CourseFrame extends JFrame {
 		data = new Object[SwingApplication.courses.size()][5];
 		int i = 0;
 		for (Course course : SwingApplication.courses) {
-			data[i][0] = course.getId();
+			data[i][0] = course.getCourseId();
 			data[i][1] = course.getCourseName();
 			data[i][2] = course.getCourseNumber();
 			data[i][3] = course.getCredit();

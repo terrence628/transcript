@@ -117,7 +117,7 @@ public class ViewCourseFrame extends JFrame {
 			data = new Object[student.getCourses().size()][5];
 			int i = 0;
 			for (Course course : student.getCourses()) {
-				data[i][0] = course.getId();
+				data[i][0] = course.getCourseId();
 				data[i][1] = course.getCourseName();
 				data[i][2] = course.getCourseNumber();
 				data[i][3] = course.getCredit();

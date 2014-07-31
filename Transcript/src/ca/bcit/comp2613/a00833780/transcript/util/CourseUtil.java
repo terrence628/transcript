@@ -42,7 +42,7 @@ public class CourseUtil {
 	public static void save(List<Course> courses, Course course) {
 		boolean foundUpdate = false;
 		for (Course courseLoop : courses) {
-			if (courseLoop.getId().equals(course.getId())) {
+			if (courseLoop.getCourseId().equals(course.getCourseId())) {
 				courseLoop.setCourseName(course.getCourseName());
 				courseLoop.setCourseNumber(course.getCourseNumber());
 				courseLoop.setCredit(course.getCredit());
@@ -60,15 +60,15 @@ public class CourseUtil {
 		Iterator<Course> iter = courses.iterator();
 		while (iter.hasNext()) {
 			Course courseLoop = iter.next();
-			if (courseLoop.getId().equals(course.getId())) {
+			if (courseLoop.getCourseId().equals(course.getCourseId())) {
 				iter.remove();
 				break;
 			}
 		}
 	}
-	public static Course findById(Long id, List<Course> courses) {
+	public static Course findById(Long courseId, List<Course> courses) {
 		for (Course courseLoop :courses) {
-			if (courseLoop.getId().equals(id)) {
+			if (courseLoop.getCourseId().equals(courseId)) {
 				return courseLoop;
 			}
 			

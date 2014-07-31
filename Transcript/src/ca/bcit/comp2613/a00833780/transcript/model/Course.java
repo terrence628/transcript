@@ -2,14 +2,31 @@ package ca.bcit.comp2613.a00833780.transcript.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 import ca.bcit.comp2613.a00833780.transcript.model.Students;
 
+@Entity
 public class Course {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
+	Long courseId;
 	String courseName;
 	String courseNumber;
 	double credit;
 	double gpa;
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "student_course",
+	joinColumns = { @JoinColumn(name = "course_id") }, inverseJoinColumns = { @JoinColumn(name = "student_id") })
 	private List<Students> students;
 
 	public Long getId() {
@@ -18,14 +35,20 @@ public class Course {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Course(Long id,String courseName, String courseNumber, double credit,
+	public Course(Long courseId,String courseName, String courseNumber, double credit,
 			double gpa) {
 		super();
-		this.id = id;
+		this.courseId = courseId;
 		this.courseName = courseName;
 		this.courseNumber = courseNumber;
 		this.credit = credit;
 		this.gpa = gpa;
+	}
+	public Long getCourseId() {
+		return courseId;
+	}
+	public void setCourseId(Long courseId) {
+		this.courseId = courseId;
 	}
 	public String getCourseName() {
 		return courseName;

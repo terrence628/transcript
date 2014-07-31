@@ -92,12 +92,12 @@ public class StudentUtil {
 			student.setCourses(new ArrayList<Course>());
 		}
 		for (Course courseLoop : student.getCourses()) {
-			if (courseLoop.getId().equals(course.getId())) {
+			if (courseLoop.getCourseId().equals(course.getCourseId())) {
 				return; // already in class
 			}
 		}
 		
-		course = CourseUtil.findById(course.getId(), courses);
+		course = CourseUtil.findById(course.getCourseId(), courses);
 		student.getCourses().add(course);
 	}
 
@@ -106,7 +106,7 @@ public class StudentUtil {
 			Iterator<Course> iter = student.getCourses().iterator();
 			while (iter.hasNext()) {
 				Course courseLoop = iter.next();
-				if (courseLoop.getId().equals(course.getId())) {
+				if (courseLoop.getCourseId().equals(course.getCourseId())) {
 					iter.remove();
 					break;
 				}
